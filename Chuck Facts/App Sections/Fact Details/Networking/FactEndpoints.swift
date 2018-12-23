@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum FactDetailsEndpoints: EndpointSetup {
+enum FactEndpoints: EndpointSetup {
     case getFact(_ category: Category)
     var path: Path {
         switch self {
         case .getFact(let category):
-            return (uri: "/jokes/random?category:\(category)", method: .get)
+            return (uri: "/jokes/random?category=\(category)", method: .get)
         }
     }
 }

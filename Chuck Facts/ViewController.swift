@@ -13,16 +13,5 @@ import RxCocoa
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let factRequest = FactDetailsRequests()
-        factRequest.getFact(in: "explicit") { (requestResult) in
-            switch requestResult {
-            case .success(let object):
-                guard let object = object else { return }
-                debugPrint(object.text)
-            default:
-                debugPrint("Error")
-            }
-        }
     }
 }

@@ -9,13 +9,13 @@
 import Foundation
 
 protocol CategoriesRequestsProvider: NetworkingDataSetup {
-    func getCategories(completion: ((RequestResult<Categories>) -> Void)?)
+    func getCategories(completion: ((RequestResult<[Category]>) -> Void)?)
 }
 
 struct CategoriesRequests: CategoriesRequestsProvider {
     var service: RequestSetup = Requester()
     
-    func getCategories(completion: ((RequestResult<Categories>) -> Void)?) {
+    func getCategories(completion: ((RequestResult<[Category]>) -> Void)?) {
         let endpoint = CategoriesEndpoints.categories
         service.request(service: endpoint) { (data, error)  in
             completion?(RequestResultFactory.generateResult(with: data, error: error))

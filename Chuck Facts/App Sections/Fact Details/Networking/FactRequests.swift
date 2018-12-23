@@ -8,15 +8,15 @@
 
 import Foundation
 
-protocol FactDetailsRequestsProvider: NetworkingDataSetup {
+protocol FactRequestsProvider: NetworkingDataSetup {
     func getFact(in category: Category, completion: ((RequestResult<Fact>) -> Void)?)
 }
 
-struct FactDetailsRequests: FactDetailsRequestsProvider {
+struct FactRequests: FactRequestsProvider {
     var service: RequestSetup = Requester()
 
     func getFact(in category: Category, completion: ((RequestResult<Fact>) -> Void)?) {
-        let endpoint = FactDetailsEndpoints.getFact(category)
+        let endpoint = FactEndpoints.getFact(category)
         service.request(service: endpoint) { (data, error)  in
             completion?(RequestResultFactory.generateResult(with: data, error: error))
         }
