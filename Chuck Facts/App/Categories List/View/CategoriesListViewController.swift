@@ -17,6 +17,7 @@ class CategoriesListViewController: UIViewController {
     // MARK: Properties
     var viewModel: CategoriesListViewModel!
     var disposeBag = DisposeBag()
+    var collapseDetailViewController = true
     private var refreshControl = UIRefreshControl()
     
     // MARK: Initializers
@@ -34,7 +35,10 @@ class CategoriesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Categories"
+        
         tableView.accessibilityIdentifier = "CategoriesTable"
+        tableView.separatorColor = .textLightColor
+        
         // Setups
         observeLoading()
         observeCategories()
@@ -60,7 +64,7 @@ class CategoriesListViewController: UIViewController {
             .bind { [unowned self] indexPath, model in
                 self.viewModel.selectedCategory = model
                 self.viewModel.navigate(to: .factSegue)
-//                self.performSegue(withIdentifier: self.viewModel.destination!.rawValue, sender: self)
+                self.collapseDetailViewController = false
                 self.tableView.deselectRow(at: indexPath, animated: true)
             }
             .disposed(by: disposeBag)

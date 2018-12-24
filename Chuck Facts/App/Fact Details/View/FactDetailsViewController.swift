@@ -33,8 +33,8 @@ class FactDetailsViewController: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = viewModel.category.capitalized
-        print("--- \(viewModel.category)")
+        title = viewModel.category.isEmpty ? "Random"
+                                           : viewModel.category.capitalized
         
         observeFact()
         observeError()

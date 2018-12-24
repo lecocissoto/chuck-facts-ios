@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if let splitVC = self.window?.rootViewController as? UISplitViewController {
             splitVC.preferredDisplayMode = .allVisible
+            splitVC.delegate = self
             if let navigation = splitVC.viewControllers.last as? UINavigationController {
                 navigation.topViewController?.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
             }
@@ -68,5 +69,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         } else {
         }
+    }
+}
+
+extension AppDelegate: UISplitViewControllerDelegate {
+    func splitViewController(_ svc: UISplitViewController,
+                             willShow vc: UIViewController,
+                             invalidating barButtonItem: UIBarButtonItem) {
+        if let detailView = svc.viewControllers.first as? UINavigationController {
+            svc.navigationItem.backBarButtonItem = nil
+            detailView.topViewController?.navigationItem.leftBarButtonItem = nil
+        }
+    }
+    
+    func splitViewController(_ splitViewController: UISplitViewController,
+                             collapseSecondary secondaryViewController: UIViewController,
+                             onto primaryViewController: UIViewController) -> Bool {
+        guard let navigationController = primaryViewController as? UINavigationController,
+            let controller = navigationController.topViewController as? CategoriesListViewController
+            else {
+                return true
+        }
+        
+        return controller.collapseDetailViewController
     }
 }

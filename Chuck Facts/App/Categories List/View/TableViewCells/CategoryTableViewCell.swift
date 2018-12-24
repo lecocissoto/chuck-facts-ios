@@ -14,7 +14,11 @@ class CategoryTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.accessoryView = UIImageView(image: UIImage(named: "disclosure-icon"))
+        
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = .darkNavigationColor
+        selectedBackgroundView = bgColorView
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
