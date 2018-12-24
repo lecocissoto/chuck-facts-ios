@@ -19,11 +19,21 @@ class CategoriesListViewController: UIViewController {
     var disposeBag = DisposeBag()
     private var refreshControl = UIRefreshControl()
     
+    // MARK: Initializers
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        viewModel = CategoriesListViewModel()
+    }
+    
+    init(viewModel: CategoriesListViewModel!) {
+        super.init(nibName: nil, bundle: nil)
+        self.viewModel = viewModel
+    }
+    
     // MARK: Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Categories"
-        viewModel = CategoriesListViewModel()
         
         // Setups
         observeLoading()
@@ -48,9 +58,10 @@ class CategoriesListViewController: UIViewController {
         Observable
             .zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Category.self))
             .bind { [unowned self] indexPath, model in
-                self.tableView.deselectRow(at: indexPath, animated: true)
                 self.viewModel.selectedCategory = model
-                print(model)
+                self.viewModel.navigate(to: .factSegue)
+                self.performSegue(withIdentifier: self.viewModel.destination!.rawValue, sender: self)
+                self.tableView.deselectRow(at: indexPath, animated: true)
             }
             .disposed(by: disposeBag)
     }
@@ -58,23 +69,25 @@ class CategoriesListViewController: UIViewController {
     private func observeError() {
         viewModel.error.asObservable().subscribe(onNext: { [weak self] (requestError) in
             guard let error = requestError else { return }
-            
-            FactAlert(title: "Ouch!", message: error.localizedDescription)
-                .addAction(title: "Try again!", action: {
-                    self?.viewModel.requestForCategories()
-                })
-                .show(in: self)
-            
-        }).disposed(by: disposeBag)
+            DispatchQueue.main.async {
+                FactAlert(title: "Ouch!", message: error.localizedDescription)
+                    .addAction(title: "Try again!", action: {
+                        self?.viewModel.requestForCategories()
+                    })
+                    .show(in: self)
+            }
+        })
+        .disposed(by: disposeBag)
     }
     
     private func observeLoading() {
         viewModel.isLoading.asObservable().subscribe(onNext: { [weak self] isLoading in
-            isLoading ? self?.displaySpinner() : self?.removeSpinner()
             DispatchQueue.main.async {
+                isLoading ? self?.displaySpinner() : self?.removeSpinner()
                 self?.refreshControl.endRefreshing()
             }
-        }).disposed(by: disposeBag)
+        })
+        .disposed(by: disposeBag)
     }
     
     private func addRefreshControl() {
@@ -93,7 +106,7 @@ class CategoriesListViewController: UIViewController {
 
 extension CategoriesListViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = viewModel.destination.value else { return }
+        guard let destination = viewModel.destination else { return }
         
         switch destination {
         case .factSegue:

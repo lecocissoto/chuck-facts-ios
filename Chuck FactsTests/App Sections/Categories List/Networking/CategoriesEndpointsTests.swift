@@ -20,5 +20,8 @@ class CategoriesEndpointsTests: XCTestCase {
         
         XCTAssertEqual(endpoint.path.uri, "/jokes/categories")
         XCTAssertEqual(endpoint.path.method, .get)
+        XCTAssertNil(endpoint.body)
+        XCTAssertEqual(endpoint.hasCache, false)
+        XCTAssertEqual(endpoint.header.header, RequestHeaders.normal.header)
     }
 }

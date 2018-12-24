@@ -29,6 +29,8 @@ class FactRequestTests: XCTestCase {
             switch result {
             case .success(let fact):
                 XCTAssertNotNil(fact)
+                guard let fact = fact else { return }
+                XCTAssertEqual(fact.url.absoluteString, "https://api.chucknorris.io/jokes/BNmS7OjESjmoEYZnjPAwfQ")
             case .error:
                 XCTFail("How do you defeat me in \(#function), code?")
             }

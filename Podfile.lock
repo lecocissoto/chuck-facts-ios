@@ -11,8 +11,10 @@ PODS:
 
 DEPENDENCIES:
   - ReachabilitySwift (~> 4.3.0)
+  - RxCocoa (> 3.0)
   - RxCocoa (~> 4.3.1)
   - RxDataSources (~> 3.0)
+  - RxSwift (> 3.0)
   - RxSwift (~> 4.3.1)
 
 SPEC REPOS:
@@ -30,6 +32,6 @@ SPEC CHECKSUMS:
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
 
-PODFILE CHECKSUM: bcc08f1a4d59e0db49e66d1ba2ccafcfbf5a95b1
+PODFILE CHECKSUM: 1e7edc4696452bd6ecf965e941fed604cb5d1f54
 
 COCOAPODS: 1.5.3

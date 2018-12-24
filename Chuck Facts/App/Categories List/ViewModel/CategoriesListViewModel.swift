@@ -16,16 +16,20 @@ class CategoriesListViewModel {
         case factSegue
     }
     
-    var categorieRequest: CategoriesRequestsProvider = CategoriesRequests()
+    var categoriesRequest: CategoriesRequestsProvider
     var categories = Variable([Category]())
     var error: Variable<RequestError?> = Variable(nil)
     var isLoading = Variable(false)
-    var destination: Variable<Destinations?> = Variable(nil)
+    var destination: Destinations?
     var selectedCategory = ""
+    
+    init(requestProvider: CategoriesRequestsProvider = CategoriesRequests() ) {
+        categoriesRequest = requestProvider
+    }
     
     func requestForCategories() {
         isLoading.value = true
-        categorieRequest.getCategories { (result) in
+        categoriesRequest.getCategories { (result) in
             switch result {
             case .success(let categories):
                 guard let categories = categories else { return }
@@ -38,7 +42,6 @@ class CategoriesListViewModel {
     }
     
     func navigate(to destination: Destinations) {
-        self.destination.value = destination
+        self.destination = destination
     }
-    
 }
