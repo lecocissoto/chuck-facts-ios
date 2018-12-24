@@ -47,8 +47,10 @@
 		65790F6E21D0316B004712AF /* FactRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65790F6D21D0316B004712AF /* FactRequester.swift */; };
 		65790F7421D03324004712AF /* FactsEndpointsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65790F7321D03324004712AF /* FactsEndpointsTests.swift */; };
 		65790F7621D033A0004712AF /* FactRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65790F7521D033A0004712AF /* FactRequestTests.swift */; };
+		65790F7A21D03B01004712AF /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65790F7921D03B01004712AF /* CategoryTableViewCell.swift */; };
+		65790F7F21D04807004712AF /* FactAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65790F7E21D04807004712AF /* FactAlert.swift */; };
+		65790F8421D04E74004712AF /* ViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65790F8321D04E74004712AF /* ViewController+Utils.swift */; };
 		65A346BF21C9CD34008CC319 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A346BE21C9CD34008CC319 /* AppDelegate.swift */; };
-		65A346C121C9CD34008CC319 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A346C021C9CD34008CC319 /* ViewController.swift */; };
 		65A346C421C9CD34008CC319 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A346C221C9CD34008CC319 /* Main.storyboard */; };
 		65A346C721C9CD34008CC319 /* Chuck_Facts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65A346C521C9CD34008CC319 /* Chuck_Facts.xcdatamodeld */; };
 		65A346C921C9CD35008CC319 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65A346C821C9CD35008CC319 /* Assets.xcassets */; };
@@ -118,9 +120,11 @@
 		65790F6D21D0316B004712AF /* FactRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactRequester.swift; sourceTree = "<group>"; };
 		65790F7321D03324004712AF /* FactsEndpointsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsEndpointsTests.swift; sourceTree = "<group>"; };
 		65790F7521D033A0004712AF /* FactRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactRequestTests.swift; sourceTree = "<group>"; };
+		65790F7921D03B01004712AF /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		65790F7E21D04807004712AF /* FactAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactAlert.swift; sourceTree = "<group>"; };
+		65790F8321D04E74004712AF /* ViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Utils.swift"; sourceTree = "<group>"; };
 		65A346BB21C9CD34008CC319 /* Chuck Facts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chuck Facts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A346BE21C9CD34008CC319 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Chuck Facts/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
-		65A346C021C9CD34008CC319 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "Chuck Facts/ViewController.swift"; sourceTree = SOURCE_ROOT; };
 		65A346C321C9CD34008CC319 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65A346C621C9CD34008CC319 /* Chuck_Facts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chuck_Facts.xcdatamodel; sourceTree = "<group>"; };
 		65A346C821C9CD35008CC319 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -221,18 +225,20 @@
 		652E59CC21CB06F600273194 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				65790F8221D04E66004712AF /* Extensions */,
+				65790F7B21D04750004712AF /* ChuckFactsKit */,
 				652E599321CB034700273194 /* Networking */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		652E59CD21CB070000273194 /* App Sections */ = {
+		652E59CD21CB070000273194 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				652E59CE21CB070600273194 /* Categories List */,
 				652E59D321CB072700273194 /* Fact Details */,
 			);
-			path = "App Sections";
+			path = App;
 			sourceTree = "<group>";
 		};
 		652E59CE21CB070600273194 /* Categories List */ = {
@@ -249,6 +255,7 @@
 		652E59CF21CB071400273194 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				65790F7821D03ADF004712AF /* TableViewCells */,
 				652E59DA21CB080700273194 /* CategoriesListViewController.swift */,
 			);
 			path = View;
@@ -282,8 +289,8 @@
 		652E59D321CB072700273194 /* Fact Details */ = {
 			isa = PBXGroup;
 			children = (
-				652E59DD21CB082100273194 /* Model */,
 				652E59DC21CB081C00273194 /* Networking */,
+				652E59DD21CB082100273194 /* Model */,
 				652E59DE21CB082600273194 /* ViewModel */,
 				652E59DF21CB082C00273194 /* View */,
 			);
@@ -326,6 +333,7 @@
 		652EEB6221C9D1E40072851B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				65A346CA21C9CD35008CC319 /* LaunchScreen.storyboard */,
 				65A346CD21C9CD35008CC319 /* Info.plist */,
 				6562D8F621C9D2F400FED5B0 /* Default-568h@2x.png */,
 				65A346C521C9CD34008CC319 /* Chuck_Facts.xcdatamodeld */,
@@ -425,6 +433,46 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		65790F7721D0389C004712AF /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				65A346C221C9CD34008CC319 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		65790F7821D03ADF004712AF /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				65790F7921D03B01004712AF /* CategoryTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		65790F7B21D04750004712AF /* ChuckFactsKit */ = {
+			isa = PBXGroup;
+			children = (
+				65790F7C21D0475A004712AF /* AlertManager */,
+			);
+			path = ChuckFactsKit;
+			sourceTree = "<group>";
+		};
+		65790F7C21D0475A004712AF /* AlertManager */ = {
+			isa = PBXGroup;
+			children = (
+				65790F7E21D04807004712AF /* FactAlert.swift */,
+			);
+			path = AlertManager;
+			sourceTree = "<group>";
+		};
+		65790F8221D04E66004712AF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				65790F8321D04E74004712AF /* ViewController+Utils.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		65A346B221C9CD33008CC319 = {
 			isa = PBXGroup;
 			children = (
@@ -450,12 +498,10 @@
 		65A346BD21C9CD34008CC319 /* Chuck Facts */ = {
 			isa = PBXGroup;
 			children = (
-				652E59CD21CB070000273194 /* App Sections */,
-				652E59CC21CB06F600273194 /* Core */,
 				65A346BE21C9CD34008CC319 /* AppDelegate.swift */,
-				65A346C021C9CD34008CC319 /* ViewController.swift */,
-				65A346C221C9CD34008CC319 /* Main.storyboard */,
-				65A346CA21C9CD35008CC319 /* LaunchScreen.storyboard */,
+				652E59CC21CB06F600273194 /* Core */,
+				652E59CD21CB070000273194 /* App */,
+				65790F7721D0389C004712AF /* Storyboards */,
 				652EEB6221C9D1E40072851B /* Supporting Files */,
 			);
 			path = "Chuck Facts";
@@ -661,16 +707,20 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Chuck Facts/Pods-Chuck Facts-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -687,7 +737,6 @@
 			files = (
 				652E59E121CB08A200273194 /* Fact.swift in Sources */,
 				652E59C821CB034700273194 /* EndpointSetup.swift in Sources */,
-				65A346C121C9CD34008CC319 /* ViewController.swift in Sources */,
 				650F1F3021CB11280024CAFE /* CategoriesRequest.swift in Sources */,
 				652E59D921CB07F200273194 /* CategoriesListViewModel.swift in Sources */,
 				652E59BC21CB034700273194 /* Requester.swift in Sources */,
@@ -697,16 +746,19 @@
 				652E59C421CB034700273194 /* RequestStatus.swift in Sources */,
 				650F1F2A21CB102B0024CAFE /* FactEndpoints.swift in Sources */,
 				652E59BE21CB034700273194 /* RequestMethods.swift in Sources */,
+				65790F7A21D03B01004712AF /* CategoryTableViewCell.swift in Sources */,
 				652E59CA21CB034700273194 /* APISetup.swift in Sources */,
 				652E59BF21CB034700273194 /* RequestHeaders.swift in Sources */,
 				652E59C521CB034700273194 /* API.swift in Sources */,
 				650F1F2C21CB104C0024CAFE /* FactDetailsViewModel.swift in Sources */,
+				65790F8421D04E74004712AF /* ViewController+Utils.swift in Sources */,
 				652E59C321CB034700273194 /* URLSession+Utils.swift in Sources */,
 				652E59C721CB034700273194 /* HeaderSetup.swift in Sources */,
 				65A346C721C9CD34008CC319 /* Chuck_Facts.xcdatamodeld in Sources */,
 				652E59BD21CB034700273194 /* RequestResult.swift in Sources */,
 				650F1F3221CB18310024CAFE /* FactRequests.swift in Sources */,
 				652E59DB21CB080700273194 /* CategoriesListViewController.swift in Sources */,
+				65790F7F21D04807004712AF /* FactAlert.swift in Sources */,
 				652E59C121CB034700273194 /* URLRequest+Utils.swift in Sources */,
 				650F1F2E21CB10590024CAFE /* FactDetailsViewController.swift in Sources */,
 				652E59D521CB07C100273194 /* CategoriesEndpoints.swift in Sources */,

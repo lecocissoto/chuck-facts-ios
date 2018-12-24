@@ -1,5 +1,5 @@
 //
-//  CategoriesListViewModel.swift
+//  FactDetailsViewModel.swift
 //  Chuck Facts
 //
 //  Created by Leandro Cissoto Ramos on 12/19/18.
@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+class FactDetailsViewModel {
+    var category: Category!
+    
+}

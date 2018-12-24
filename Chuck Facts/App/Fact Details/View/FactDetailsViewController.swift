@@ -1,5 +1,5 @@
 //
-//  CategoriesListViewController.swift
+//  FactDetailsViewController.swift
 //  Chuck Facts
 //
 //  Created by Leandro Cissoto Ramos on 12/19/18.
@@ -8,9 +8,11 @@
 
 import UIKit
 
-class CategoriesListViewController: UIViewController {
-
+class FactDetailsViewController: UIViewController {
+    var viewModel: FactDetailsViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = FactDetailsViewModel()
     }
 }
