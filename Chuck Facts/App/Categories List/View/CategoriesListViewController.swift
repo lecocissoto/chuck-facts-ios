@@ -34,7 +34,7 @@ class CategoriesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Categories"
-        
+        tableView.accessibilityIdentifier = "CategoriesTable"
         // Setups
         observeLoading()
         observeCategories()
