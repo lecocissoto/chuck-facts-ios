@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dVg-HM-jvN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fj9-bu-beX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,7 +20,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="categoriesTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uFb-7F-FQc" userLabel="categoriesTableView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.50196078431372548" green="0.27058823529411763" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="SON-AL-QQA">
                                     <rect key="frame" x="0.0" y="98" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -54,6 +54,7 @@
                                         </accessibility>
                                         <connections>
                                             <outlet property="categoryLabel" destination="ySA-04-sp6" id="lTC-le-Wc5"/>
+                                            <segue destination="fKZ-6e-PYI" kind="showDetail" identifier="factSegue" id="nxn-s4-hrg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -71,14 +72,13 @@
                     <navigationItem key="navigationItem" id="dGo-Ch-rXb"/>
                     <connections>
                         <outlet property="tableView" destination="uFb-7F-FQc" id="baA-Xy-i3z"/>
-                        <segue destination="1zd-Lh-Fp0" kind="show" identifier="factSegue" id="oOY-Wo-sw5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
-        <!--Fact Details View Controller-->
+        <!--Random Fact-->
         <scene sceneID="Nfa-HB-WpM">
             <objects>
                 <viewController id="1zd-Lh-Fp0" customClass="FactDetailsViewController" customModule="Chuck_Facts" customModuleProvider="target" sceneMemberID="viewController">
@@ -126,6 +126,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pTW-rM-HBR"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Random Fact" id="dgg-sY-c4C"/>
                     <connections>
                         <outlet property="factLabel" destination="8rK-Vr-g6z" id="P3d-gF-AkB"/>
                         <outlet property="iconImageView" destination="Pjd-ze-JQc" id="9Ps-eF-aDT"/>
@@ -133,7 +134,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxF-jY-gCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1920.8" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1132" y="927.88605697151434"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="Iqc-TM-2Ux">
+            <objects>
+                <splitViewController id="Fj9-bu-beX" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="dVg-HM-jvN" kind="relationship" relationship="masterViewController" id="ahw-1W-1gC"/>
+                        <segue destination="fKZ-6e-PYI" kind="relationship" relationship="detailViewController" id="Tj0-RG-1hK"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dgo-o6-xwy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1033" y="509"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pXJ-fz-b7P">
@@ -153,5 +167,26 @@
             </objects>
             <point key="canvasLocation" x="193" y="134"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ks9-kU-B22">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fKZ-6e-PYI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XX9-IO-KhL">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1zd-Lh-Fp0" kind="relationship" relationship="rootViewController" id="UdT-SR-wnX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VGR-Eq-2Dt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192.80000000000001" y="927.88605697151434"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="nxn-s4-hrg"/>
+    </inferredMetricsTieBreakers>
 </document>

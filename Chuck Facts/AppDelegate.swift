@@ -13,9 +13,15 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        if let splitVC = self.window?.rootViewController as? UISplitViewController {
+            splitVC.preferredDisplayMode = .allVisible
+            if let navigation = splitVC.viewControllers.last as? UINavigationController {
+                navigation.topViewController?.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
+            }
+        }
+        
         return true
     }
 

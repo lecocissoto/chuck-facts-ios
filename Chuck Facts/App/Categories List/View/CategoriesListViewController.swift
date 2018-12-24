@@ -60,7 +60,7 @@ class CategoriesListViewController: UIViewController {
             .bind { [unowned self] indexPath, model in
                 self.viewModel.selectedCategory = model
                 self.viewModel.navigate(to: .factSegue)
-                self.performSegue(withIdentifier: self.viewModel.destination!.rawValue, sender: self)
+//                self.performSegue(withIdentifier: self.viewModel.destination!.rawValue, sender: self)
                 self.tableView.deselectRow(at: indexPath, animated: true)
             }
             .disposed(by: disposeBag)
@@ -110,7 +110,14 @@ extension CategoriesListViewController {
         
         switch destination {
         case .factSegue:
-            guard let nextVC = segue.destination as? FactDetailsViewController else { return }
+            guard let navController = segue.destination as? UINavigationController,
+                let nextVC = navController.topViewController as? FactDetailsViewController else {
+                    fatalError("Error while moving to FactDetailsViewController")
+            }
+            
+            // Manage the display mode button
+            nextVC.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+            nextVC.navigationItem.leftItemsSupplementBackButton = true
             nextVC.viewModel.category = viewModel.selectedCategory
         }
     }

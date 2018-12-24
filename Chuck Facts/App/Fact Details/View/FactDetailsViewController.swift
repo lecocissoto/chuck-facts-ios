@@ -75,7 +75,7 @@ class FactDetailsViewController: UIViewController {
                 .addAction(title: "Back to list", action: {
                     self?.navigationController?.popToRootViewController(animated: true)
                 })
-                .addAction(title: "Try again!", action: {
+                .addAction(title: "Try again!", style: .default, action: {
                     self?.viewModel.requestForFact()
                 })
                 .show(in: self)
