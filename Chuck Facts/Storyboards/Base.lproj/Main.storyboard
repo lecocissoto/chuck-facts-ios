@@ -91,7 +91,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="iconImageView" translatesAutoresizingMaskIntoConstraints="NO" id="Pjd-ze-JQc" userLabel="iconImageView">
                                 <rect key="frame" x="162.5" y="208" width="50" height="50"/>
-                                <accessibility key="accessibilityConfiguration" identifier="IconImageView"/>
+                                <accessibility key="accessibilityConfiguration" identifier="IconImageView" label="IconImageView"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="QC3-P2-Zdh"/>
                                     <constraint firstAttribute="width" constant="50" id="wi2-wW-dvc"/>

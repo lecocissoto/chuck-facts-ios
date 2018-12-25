@@ -8,23 +8,31 @@
 
 import UIKit
 
-let imageCache = NSCache<AnyObject, AnyObject>()
 extension UIImageView {
     func cacheImage(urlString: String) {
-        let url = URL(string: urlString)
-        
-        image = nil
-        
-        if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
-            self.image = imageFromCache
+        let emptyImage = UIImage(named: "no-image")
+        guard let url = URL(string: urlString) else {
+            image = emptyImage
             return
         }
         
-        URLSession.shared.dataTask(with: url!) { data, _, _ in
-            guard let data = data else { return }
-            DispatchQueue.main.async {
-                let imageToCache = UIImage(data: data)
-                imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
+        // Check for image cache
+        let imageCache = NSCache<AnyObject, AnyObject>()
+        if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
+            image = imageFromCache
+            return
+        }
+        
+        // Get the image using URLSession
+        URLSession.shared.dataTask(with: url) { data, _, _ in
+            DispatchQueue.main.async { [unowned self] in
+                guard let data = data,
+                      let imageToCache = UIImage(data: data) else {
+                        self.image = emptyImage
+                        return
+                }
+                
+                imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
                 self.image = imageToCache
             }
         }.resume()

@@ -47,6 +47,7 @@ class FactDetailsViewController: UIViewController {
     @IBAction func openInWebTapped(_ sender: UIButton) {
         guard let fact = viewModel.fact.value else { return }
         let safariVC = SFSafariViewController(url: fact.url)
+        
         present(safariVC, animated: true, completion: nil)
     }
     
@@ -85,7 +86,8 @@ class FactDetailsViewController: UIViewController {
     
     private func observeLoading() {
         viewModel.isLoading.asObservable().subscribe(onNext: { [weak self] isLoading in
-            isLoading ? self?.displaySpinner() : self?.removeSpinner()
+            isLoading ? self?.displaySpinner()
+                      : self?.removeSpinner()
         }).disposed(by: disposeBag)
     }
 }
